@@ -11,8 +11,15 @@ class FacebookAPI:
         response = requests.request(method, url, params=params, json=json)
         return response.json()
 
-    def post_message(self, message: str) -> dict[str, Any]:
-        return self._request("POST", f"{PAGE_ID}/feed", {"message": message})
+    def post_message(self, message: str, link: str = None) -> dict[str, Any]:
+        params = {"message": message}
+        if link:
+            params["link"] = link
+        return self._request("POST", f"{PAGE_ID}/feed", params)
+
+    def refresh_link_cache(self, url: str) -> dict[str, Any]:
+        """Force Facebook to update its metadata cache for a URL."""
+        return self._request("POST", "", {"id": url, "scrape": True})
 
     def reply_to_comment(self, comment_id: str, message: str) -> dict[str, Any]:
         return self._request("POST", f"{comment_id}/comments", {"message": message})

@@ -6,12 +6,12 @@ mcp = FastMCP("FacebookMCP")
 manager = Manager()
 
 @mcp.tool()
-def post_to_facebook(message: str) -> dict[str, Any]:
-    """Create a new Facebook Page post with a text message.
-    Input: message (str)
+def post_to_facebook(message: str, link: str = None) -> dict[str, Any]:
+    """Create a new Facebook Page post with a text message and optionally a link.
+    Input: message (str), link (str, optional)
     Output: dict with post ID and creation status
     """
-    return manager.post_to_facebook(message)
+    return manager.post_to_facebook(message, link)
 
 @mcp.tool()
 def reply_to_comment(post_id: str, comment_id: str, message: str) -> dict[str, Any]:
@@ -273,4 +273,13 @@ def bulk_delete_comments(comment_ids: list[str]) -> list[dict[str, Any]]:
 def bulk_hide_comments(comment_ids: list[str]) -> list[dict[str, Any]]:
     """Hide multiple comments by ID."""
     return manager.bulk_hide_comments(comment_ids)
+
+
+@mcp.tool()
+def refresh_link_cache(url: str) -> dict[str, Any]:
+    """Force Facebook to update its metadata cache for a URL to refresh link preview.
+    Input: url (str)
+    Output: dict with refresh result
+    """
+    return manager.refresh_link_cache(url)
 

@@ -25,7 +25,7 @@ This MCP provides a suite of AI-callable tools that connect directly to a Facebo
 
 | Tool                             | Description                                                         |
 |----------------------------------|---------------------------------------------------------------------|
-| `post_to_facebook`               | Create a new Facebook post with a message.                          |
+| `post_to_facebook`               | Create a new Facebook post with a message and optionally a link.    |
 | `reply_to_comment`               | Reply to a specific comment on a post.                              |
 | `get_page_posts`                 | Retrieve recent posts from the Page.                                |
 | `get_post_comments`              | Fetch comments on a given post.                                     |
@@ -54,6 +54,7 @@ This MCP provides a suite of AI-callable tools that connect directly to a Facebo
 | `get_post_reactions_breakdown`   | Get all reaction counts for a post in one call.              |
 | `bulk_delete_comments`           | Delete multiple comments by ID.                              |
 | `bulk_hide_comments`             | Hide multiple comments by ID.                    |
+| `refresh_link_cache`             | Force Facebook to update its metadata cache for a URL.             |
 
 ---
 

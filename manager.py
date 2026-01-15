@@ -6,8 +6,12 @@ class Manager:
     def __init__(self):
         self.api = FacebookAPI()
 
-    def post_to_facebook(self, message: str) -> dict[str, Any]:
-        return self.api.post_message(message)
+    def post_to_facebook(self, message: str, link: str = None) -> dict[str, Any]:
+        return self.api.post_message(message, link)
+
+    def refresh_link_cache(self, url: str) -> dict[str, Any]:
+        """Force Facebook to update its metadata cache for a URL."""
+        return self.api.refresh_link_cache(url)
 
     def reply_to_comment(self, post_id: str, comment_id: str, message: str) -> dict[str, Any]:
         return self.api.reply_to_comment(comment_id, message)
